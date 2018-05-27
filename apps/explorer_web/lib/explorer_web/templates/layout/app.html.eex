@@ -33,7 +33,7 @@
             </div>
           <% end %>
           
-          <%= link to: transaction_path(@conn, :index, Gettext.get_locale), class: "header__link" do %>
+          <%= link to: account_path(@conn, :index, Gettext.get_locale), class: "header__link" do %>
             <div tabindex="0" class="icon-locate">
                 <img class="" src="<%= static_path(@conn, "/images/transaction.svg") %>" />
                 <%= gettext("Accounts") %>
