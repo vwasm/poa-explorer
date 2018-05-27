@@ -96,7 +96,6 @@ defmodule EthereumJSONRPC.Block do
   @spec elixir_to_params(elixir) :: map
   def elixir_to_params(
         %{
-          "author" => miner_hash,
           "difficulty" => difficulty,
           "gasLimit" => gas_limit,
           "gasUsed" => gas_used,
@@ -106,7 +105,9 @@ defmodule EthereumJSONRPC.Block do
           "parentHash" => parent_hash,
           "size" => size,
           "timestamp" => timestamp,
-          "totalDifficulty" => total_difficulty
+          "totalDifficulty" => total_difficulty,
+          "mixHash" => mix_hash,
+          "nonce" => nonce
         } = elixir
       ) do
     %{
@@ -273,7 +274,7 @@ defmodule EthereumJSONRPC.Block do
     Enum.into(block, %{}, &entry_to_elixir/1)
   end
 
-  defp entry_to_elixir({key, quantity}) when key in ~w(difficulty gasLimit gasUsed number size totalDifficulty) do
+  defp entry_to_elixir({key, quantity}) when key in ~w(difficulty gasLimit gasUsed mixHash nonce number size totalDifficulty) do
     {key, quantity_to_integer(quantity)}
   end
 
