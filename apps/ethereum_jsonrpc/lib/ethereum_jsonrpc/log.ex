@@ -56,14 +56,17 @@ defmodule EthereumJSONRPC.Log do
         "logIndex" => index,
         "topics" => topics,
         "transactionHash" => transaction_hash,
-        "type" => type
+        "blockHash" => block_hash,
+        "blockNumber" => block_number,
+        "removed" => removed,
+        "transactionIndex" => transaction_index
       }) do
     %{
       address_hash: address_hash,
       data: data,
       index: index,
       transaction_hash: transaction_hash,
-      type: type
+      type: "mined"
     }
     |> put_topics(topics)
   end
@@ -103,9 +106,9 @@ defmodule EthereumJSONRPC.Log do
     Enum.into(log, %{}, &entry_to_elixir/1)
   end
 
-  defp entry_to_elixir({key, _} = entry) when key in ~w(address blockHash data topics transactionHash type), do: entry
+  defp entry_to_elixir({key, _} = entry) when key in ~w(address blockHash contractAddress data from logsBloom removed root to topics transactionHash type), do: entry
 
-  defp entry_to_elixir({key, quantity}) when key in ~w(blockNumber logIndex transactionIndex transactionLogIndex) do
+  defp entry_to_elixir({key, quantity}) when key in ~w(blockNumber cumulativeGasUsed gasUsed logIndex transactionIndex transactionLogIndex) do
     {key, quantity_to_integer(quantity)}
   end
 

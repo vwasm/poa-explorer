@@ -7,7 +7,7 @@ defmodule Explorer.Chain.Transaction do
   alias Explorer.Chain.{Address, Block, Data, Gas, Hash, InternalTransaction, Receipt, Wei}
 
   @optional_attrs ~w(block_hash from_address_hash index to_address_hash)a
-  @required_attrs ~w(gas gas_price hash input nonce public_key r s standard_v v value)a
+  @required_attrs ~w(gas gas_price hash input nonce r s v value)a
 
   @typedoc """
   The full public key of the signer of the transaction.
@@ -106,11 +106,9 @@ defmodule Explorer.Chain.Transaction do
           input: Data.t(),
           internal_transactions: %Ecto.Association.NotLoaded{} | [InternalTransaction.t()],
           nonce: non_neg_integer(),
-          public_key: public_key(),
           r: r(),
           receipt: %Ecto.Association.NotLoaded{} | Receipt.t(),
           s: s(),
-          standard_v: standard_v(),
           to_address: %Ecto.Association.NotLoaded{} | Address.t(),
           to_address_hash: Hash.Truncated.t(),
           v: v(),
@@ -124,10 +122,8 @@ defmodule Explorer.Chain.Transaction do
     field(:index, :integer)
     field(:input, Data)
     field(:nonce, :integer)
-    field(:public_key, Data)
     field(:r, :decimal)
     field(:s, :decimal)
-    field(:standard_v, :integer)
     field(:v, :integer)
     field(:value, Wei)
 
@@ -254,7 +250,6 @@ defmodule Explorer.Chain.Transaction do
     |> cast(attrs, @required_attrs ++ @optional_attrs)
     |> validate_required(@required_attrs)
     |> validate_collated()
-    |> validate_number(:standard_v, greater_than_or_equal_to: 0, less_than_or_equal_to: 3)
     |> check_constraint(
       :index,
       message: "cannot be set when block_hash is nil and must be set when block_hash is not nil",

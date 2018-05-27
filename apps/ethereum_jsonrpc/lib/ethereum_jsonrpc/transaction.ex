@@ -48,6 +48,7 @@ defmodule EthereumJSONRPC.Transaction do
 
   @type params :: %{
           block_hash: EthereumJSONRPC.hash(),
+          block_number: non_neg_integer(),
           from_address_hash: EthereumJSONRPC.address(),
           gas: non_neg_integer(),
           gas_price: non_neg_integer(),
@@ -55,7 +56,6 @@ defmodule EthereumJSONRPC.Transaction do
           index: non_neg_integer(),
           input: String.t(),
           nonce: non_neg_integer(),
-          public_key: String.t(),
           r: non_neg_integer(),
           s: non_neg_integer(),
           standard_v: 0 | 1,
@@ -67,16 +67,15 @@ defmodule EthereumJSONRPC.Transaction do
   @spec elixir_to_params(elixir) :: params
   def elixir_to_params(%{
         "blockHash" => block_hash,
+        "blockNumber" => block_number,
         "from" => from_address_hash,
         "gas" => gas,
         "gasPrice" => gas_price,
         "hash" => hash,
         "input" => input,
         "nonce" => nonce,
-        "publicKey" => public_key,
         "r" => r,
         "s" => s,
-        "standardV" => standard_v,
         "to" => to_address_hash,
         "transactionIndex" => index,
         "v" => v,
@@ -91,10 +90,8 @@ defmodule EthereumJSONRPC.Transaction do
       index: index,
       input: input,
       nonce: nonce,
-      public_key: public_key,
       r: r,
       s: s,
-      standard_v: standard_v,
       to_address_hash: to_address_hash,
       v: v,
       value: value
@@ -137,11 +134,11 @@ defmodule EthereumJSONRPC.Transaction do
   # `t:EthereumJSONRPC.address/0` and `t:EthereumJSONRPC.hash/0` pass through as `Explorer.Chain` can verify correct
   # hash format
   defp entry_to_elixir({key, value})
-       when key in ~w(blockHash condition creates from hash input jsonrpc publicKey raw to),
+       when key in ~w(blockHash condition creates from hash input jsonrpc raw to),
        do: {key, value}
 
   defp entry_to_elixir({key, quantity})
-       when key in ~w(blockNumber gas gasPrice nonce r s standardV transactionIndex v value) do
+       when key in ~w(blockNumber gas gasPrice nonce r s transactionIndex v value) do
     {key, quantity_to_integer(quantity)}
   end
 
