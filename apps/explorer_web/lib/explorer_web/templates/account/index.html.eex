@@ -1,0 +1,6 @@
+<section class="container__section">
+  <div class="accounts__headline">
+    <h1>Hello World</h1>
+    <p>This is the <%= @accounts %> page</p>
+  </div>
+</section>
