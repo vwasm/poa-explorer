@@ -25,17 +25,14 @@
                 <%= gettext("Blocks") %>
             </div>
           <% end %>
-          <div tabindex="0" class="icon-locate">
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-              <img class="" src="<%= static_path(@conn, "/images/transaction.svg") %>" />
-              <%= gettext("Transactions") %>
-              <i class="fa fa-caret-down"></i>
-            </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
-              <li><%= link(gettext("Validated"), to: transaction_path(@conn, :index, Gettext.get_locale)) %></li>
-              <li><%= link(gettext("Pending"), to: pending_transaction_path(@conn, :index, Gettext.get_locale)) %></li>
-            </ul>
-          </div>
+
+          <%= link to: transaction_path(@conn, :index, Gettext.get_locale), class: "header__link" do %>
+            <div tabindex="0" class="icon-locate">
+                <img class="" src="<%= static_path(@conn, "/images/transaction.svg") %>" />
+                <%= gettext("Blocks") %>
+            </div>
+          <% end %>
+
         </div>
       </nav>
     </div>
