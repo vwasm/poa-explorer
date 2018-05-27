@@ -264,7 +264,7 @@ defmodule Explorer.Indexer.BlockFetcher do
          {:receipts, {:ok, receipt_params}} <- {:receipts, fetch_transaction_receipts(state, transaction_hashes)},
          %{logs: logs, receipts: receipts} = receipt_params,
          {:internal_transactions, {:ok, internal_transactions}} <-
-           {:internal_transactions, fetch_internal_transactions(state, transaction_hashes)} do
+           {:internal_transactions, {:ok, []}} do
       insert(state, seq, range, %{
         blocks: blocks,
         internal_transactions: internal_transactions,
