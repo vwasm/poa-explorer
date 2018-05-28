@@ -9,5 +9,8 @@ defmodule Explorer.Repo.Migrations.CreateAddress do
 
       timestamps(null: false)
     end
+
+    create(index(:addresses, [:balance_fetched_at]))
+
   end
 end
