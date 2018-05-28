@@ -4,6 +4,8 @@ defmodule ExplorerWeb.BlockController do
   alias Explorer.Chain
 
   def index(conn, params) do
+  	IO.inspect("PARAMS")
+  	IO.inspect(params)
     blocks = Chain.list_blocks(necessity_by_association: %{transactions: :optional}, pagination: params)
 
     render(conn, "index.html", blocks: blocks)
