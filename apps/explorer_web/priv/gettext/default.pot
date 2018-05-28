@@ -24,7 +24,7 @@ msgid "Blocks"
 msgstr ""
 
 #: lib/explorer_web/templates/layout/_footer.html.eex:2
-msgid "Copyright %{year} POA"
+msgid "Copyright %{year} eWASM"
 msgstr ""
 
 #: lib/explorer_web/templates/block/index.html.eex:32
@@ -48,7 +48,7 @@ msgid "Height"
 msgstr ""
 
 #: lib/explorer_web/templates/layout/app.html.eex:7
-msgid "POA Network Explorer"
+msgid "eWASM Network Explorer"
 msgstr ""
 
 #: lib/explorer_web/templates/address_internal_transaction/index.html.eex:8
@@ -217,7 +217,7 @@ msgstr ""
 #: lib/explorer_web/templates/pending_transaction/index.html.eex:45
 #: lib/explorer_web/templates/transaction/index.html.eex:43
 #: lib/explorer_web/templates/transaction/show.html.eex:44
-msgid "POA"
+msgid "eWASM"
 msgstr ""
 
 #: lib/explorer_web/templates/block/index.html.eex:49
