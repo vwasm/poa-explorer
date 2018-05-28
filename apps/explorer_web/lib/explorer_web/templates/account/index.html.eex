@@ -1,9 +1,7 @@
 <section class="container__section">
   <div class="accounts__headline">
     <h1 class="accounts__headline-title">
-      Hello World
-      <%= gettext(
-            "Showing all accounts"%>
+      <%= gettext("Showing all accounts") %>
     </h1>
     <div class="accounts__pagination">
       <%= pagination_links(
@@ -26,7 +24,6 @@
           <tr>
             <th class="accounts__column-header"><%= gettext "Account" %></th>
             <th class="accounts__column-header"><%= gettext "Balance" %></th>
-            <th class="accounts__column-header"><%= gettext "Last Updated" %></th>
           </tr>
         </thead>
         <tbody>
@@ -36,10 +33,7 @@
                 <%= account.hash %>
               </td>
               <td class="accounts__column accounts__column--optional accounts__column--fetched-balance">
-                <%= account.fetched_balance |> Cldr.Number.to_string! %>
-              </td>
-              <td class="accounts__column accounts__column--optional accounts__column--updated-time">
-                <%= formatted_last_update(account) %>
+                <%= format_balance(account) %>
               </td>
             </tr>
           <% end %>
