@@ -42,7 +42,7 @@
 }
 
 @media (min-width: $explorer-breakpoint-sm) {
-  .blocks {
+  .accounts {
     &__column-header {
       &--optional { display: table-cell; }
     }
@@ -53,7 +53,7 @@
 }
 
 @media (min-width: $explorer-breakpoint-md) {
-  .blocks {
+  .accounts {
     &__headline {
       display: flex;
       align-items: center;
