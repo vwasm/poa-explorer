@@ -867,6 +867,19 @@ defmodule Explorer.Chain do
     |> Repo.paginate(pagination)
   end
 
+  @spec list_accounts([necessity_by_association_option | pagination_option]) :: %Scrivener.Page{
+          entries: [Account.t()]
+        }
+  def list_accounts(options \\ []) when is_list(options) do
+    necessity_by_association = Keyword.get(options, :necessity_by_association, %{})
+    pagination = Keyword.get(options, :pagination, %{})
+
+    Account
+    |> join_associations(necessity_by_association)
+    |> order_by(desc: :number)
+    |> Repo.paginate(pagination)
+  end
+
   @doc """
   Returns a stream of unfetched `Explorer.Chain.Address.t/0`.
 
