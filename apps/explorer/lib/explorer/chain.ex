@@ -867,16 +867,14 @@ defmodule Explorer.Chain do
     |> Repo.paginate(pagination)
   end
 
-  @spec list_accounts([necessity_by_association_option | pagination_option]) :: %Scrivener.Page{
-          entries: [Account.t()]
+  @spec list_accounts([pagination_option]) :: %Scrivener.Page{
+          entries: [Address.t()]
         }
   def list_accounts(options \\ []) when is_list(options) do
-    necessity_by_association = Keyword.get(options, :necessity_by_association, %{})
     pagination = Keyword.get(options, :pagination, %{})
 
-    Account
-    |> join_associations(necessity_by_association)
-    |> order_by(desc: :number)
+    Address
+    |> order_by(desc: :balance_fetched_at)
     |> Repo.paginate(pagination)
   end
 

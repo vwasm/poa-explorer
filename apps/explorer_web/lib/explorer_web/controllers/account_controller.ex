@@ -4,9 +4,9 @@ defmodule ExplorerWeb.AccountController do
   alias Explorer.Chain
 
   def index(conn, params) do
-    # accounts = Chain.list_accounts(necessity_by_association: %{transactions: :optional}, pagination: params)
+    accounts = Chain.list_accounts(pagination: params)
 
-    render(conn, "index.html", accounts: "accounts")
+    render(conn, "index.html", accounts: accounts)
   end
 
 end
