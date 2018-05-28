@@ -1,6 +1,50 @@
 <section class="container__section">
   <div class="accounts__headline">
-    <h1>Hello World</h1>
-    <p>This is the <%= @accounts %> page</p>
+    <h1 class="accounts__headline-title">
+      Hello World
+      <%= gettext(
+            "Showing all accounts"%>
+    </h1>
+    <div class="accounts__pagination">
+      <%= pagination_links(
+            @conn,
+            @accounts,
+            ["en"],
+            distance: 1,
+            first: true,
+            next: Phoenix.HTML.raw("&rsaquo;"),
+            path: &account_path/4,
+            previous: Phoenix.HTML.raw("&lsaquo;"),
+            view_style: :bulma
+          ) %>
+    </div>
+  </div>
+    <div class="accounts">
+    <div class="accounts__container">
+      <table class="accounts__table">
+        <thead class="accounts__header">
+          <tr>
+            <th class="accounts__column-header"><%= gettext "Account" %></th>
+            <th class="accounts__column-header"><%= gettext "Balance" %></th>
+            <th class="accounts__column-header"><%= gettext "Last Updated" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for account <- @accounts do %>
+            <tr class="accounts__row">
+              <td class="accounts__column accounts__column--height">
+                <%= account.hash %>
+              </td>
+              <td class="accounts__column accounts__column--optional accounts__column--fetched-balance">
+                <%= account.fetched_balance |> Cldr.Number.to_string! %>
+              </td>
+              <td class="accounts__column accounts__column--optional accounts__column--updated-time">
+                <%= formatted_last_update(account) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
