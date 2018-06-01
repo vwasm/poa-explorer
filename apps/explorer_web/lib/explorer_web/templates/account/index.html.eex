@@ -17,6 +17,11 @@
           ) %>
     </div>
   </div>
+    <script type="text/javascript">
+      var getCode = function() {
+        console.log("getting code")
+      }
+    </script>
     <div class="accounts">
     <div class="accounts__container">
       <table class="accounts__table">
@@ -30,7 +35,10 @@
           <%= for account <- @accounts do %>
             <tr class="accounts__row">
               <td class="accounts__column accounts__column--height">
-                <%= account.hash %>
+              <%= link(account.hash,
+                    class: "accounts__link",
+                    to: account_path(@conn, :code, @conn.assigns.locale, account))
+              %>              
               </td>
               <td class="accounts__column accounts__column--optional accounts__column--fetched-balance">
                 <%= format_balance(account) %>

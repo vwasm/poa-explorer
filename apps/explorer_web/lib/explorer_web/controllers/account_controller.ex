@@ -9,4 +9,9 @@ defmodule ExplorerWeb.AccountController do
     render(conn, "index.html", accounts: accounts)
   end
 
+  def code(conn, params) do
+    IO.inspect(params)
+    redirect(conn, to: account_code_path(conn, :code, params))
+  end
+
 end

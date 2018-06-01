@@ -12,7 +12,11 @@ defmodule ExplorerWeb.AccountView do
   end
 
   def format_balance(%Address{fetched_balance: balance}) do
-    format_wei_value(balance, :ether)
+    try do 
+        format_wei_value(balance, :ether)
+    rescue
+        FunctionClauseError -> format_wei_value(0, :ether)
+    end
   end
 end
 
