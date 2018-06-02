@@ -37,7 +37,7 @@
               <td class="accounts__column accounts__column--height">
               <%= link(account.hash,
                     class: "accounts__link",
-                    to: account_path(@conn, :code, @conn.assigns.locale, account))
+                    to: account_path(@conn, :show, @conn.assigns.locale, account))
               %>              
               </td>
               <td class="accounts__column accounts__column--optional accounts__column--fetched-balance">

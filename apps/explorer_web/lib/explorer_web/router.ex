@@ -37,7 +37,7 @@ defmodule ExplorerWeb.Router do
       resources("/transactions", BlockTransactionController, only: [:index], as: :transaction)
     end
 
-    resources "/accounts", AccountController, only: [:index, :code] do 
+    resources "/accounts", AccountController, only: [:index, :show] do 
       resources("/code", AccountCodeController, only: [:index], as: :code)
     end
 
