@@ -56,6 +56,8 @@ defmodule ExplorerWeb.WeiHelpers do
   @spec format_wei_value(Wei.t(), Wei.unit(), format_options()) :: String.t()
   def format_wei_value(%Wei{} = wei, unit, options \\ []) when unit in @valid_units do
     number_format_options = build_number_format_options(options)
+    IO.inspect("printing wei")
+    IO.inspect(Wei)
 
     converted_value =
       wei

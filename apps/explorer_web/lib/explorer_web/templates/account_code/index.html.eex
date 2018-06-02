@@ -1,3 +1,15 @@
 <section class="container__section account">
-  <h1>Hello World</h1>
+  <h1>Hello World <%= @code %></h1>
+  <div class="blocks__pagination">
+    <%= pagination_links(
+          @conn,
+          ["en"],
+          distance: 1,
+          first: true,
+          next: Phoenix.HTML.raw("&rsaquo;"),
+          path: &account_code_path/5,
+          previous: Phoenix.HTML.raw("&lsaquo;"),
+          view_style: :bulma
+        ) %>
+  </div>
 </section>

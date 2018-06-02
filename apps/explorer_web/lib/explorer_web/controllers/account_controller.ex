@@ -9,9 +9,8 @@ defmodule ExplorerWeb.AccountController do
     render(conn, "index.html", accounts: accounts)
   end
 
-  def code(conn, params) do
-    IO.inspect(params)
-    redirect(conn, to: account_code_path(conn, :code, params))
+  def show(conn, %{"id" => number, "locale" => locale}) do
+    redirect(conn, to: account_code_path(conn, :index, locale, number))
   end
 
 end
