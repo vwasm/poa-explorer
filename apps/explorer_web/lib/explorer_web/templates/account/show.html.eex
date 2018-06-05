@@ -1,0 +1,4 @@
+<section class="container__section code">
+  <h1>This is Code View</h1>
+  <h2><%= @code %></h2>
+</section>
