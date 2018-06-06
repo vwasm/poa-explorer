@@ -2,6 +2,7 @@ defmodule ExplorerWeb.AccountController do
   use ExplorerWeb, :controller
 
   alias Explorer.Chain
+  import EthereumJSONRPC, only: [fetch_code_by_address: 1]
 
   def index(conn, params) do
     accounts = Chain.list_accounts(pagination: params)
@@ -10,12 +11,10 @@ defmodule ExplorerWeb.AccountController do
   end
 
   def show(conn, %{"id" => account_id}) do
-    IO.inspect("from account_controller")
-    IO.inspect(conn)
     render(
       conn,
       "show.html",
-      code: "ewasm classic yo"
+      code: fetch_code_by_address(account_id)
     )
     else
       :error ->

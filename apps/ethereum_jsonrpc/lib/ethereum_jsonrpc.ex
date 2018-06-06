@@ -300,4 +300,15 @@ defmodule EthereumJSONRPC do
   end
 
   defp int_to_hash_string(number), do: "0x" <> Integer.to_string(number, 16)
+
+  def fetch_code_by_address(address_id) do
+    request = %{
+      "id" => address_id,
+      "jsonrpc" => "2.0",
+      "method" => "eth_getCode",
+      "params" => [address_id, "latest"]
+    }
+
+   json_rpc(request, config(:url))
+  end
 end
