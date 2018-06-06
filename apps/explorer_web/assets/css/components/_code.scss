@@ -1,0 +1,6 @@
+.code {
+  &__container { @extend %paper; }
+  &__header { @extend %section-header; }
+  &__heading { @extend %section-header__heading; }
+  &__subheading { @extend %section-header__subheading; }
+}

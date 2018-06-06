@@ -1,4 +1,11 @@
 <section class="container__section code">
-  <h1>Contract Code View</h1>
-  <h2><%= @code %></h2>
+  <div class="code__container">
+    <div class="code__header">
+    <h1 class="code__heading"><%= gettext "Contract Code Details" %></h1>
+    <h3 class="code__subheading"><%= @conn.params["id"] %></h3>
+  </div>
+    <div class="contract_code__container">
+      <h2><%= @code %></h2>
+    </div>
+  </div>
 </section>

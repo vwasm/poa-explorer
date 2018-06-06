@@ -17,12 +17,7 @@
           ) %>
     </div>
   </div>
-    <script type="text/javascript">
-      var getCode = function() {
-        console.log("getting code")
-      }
-    </script>
-    <div class="accounts">
+  <div class="accounts">
     <div class="accounts__container">
       <table class="accounts__table">
         <thead class="accounts__header">
