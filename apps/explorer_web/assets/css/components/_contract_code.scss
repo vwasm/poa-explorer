@@ -1,0 +1,9 @@
+.contract_code {
+  @extend %paper;
+
+  &__container {
+    padding: explorer-size(-1) explorer-size(0);
+    & + & { padding-top: 0; }
+    &--title { padding-top: explorer-size(0); }
+  }
+}
