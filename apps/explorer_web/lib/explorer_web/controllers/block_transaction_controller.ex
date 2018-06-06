@@ -20,9 +20,6 @@ defmodule ExplorerWeb.BlockTransactionController do
           },
           pagination: params
         )
-      IO.inspect("hellow from b_t_controller")
-      IO.inspect(block)
-      IO.inspect(page)
       render(conn, "index.html", block: block, block_transaction_count: block_transaction_count, page: page)
     else
       {:error, :invalid} ->

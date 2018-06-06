@@ -11,10 +11,12 @@ defmodule ExplorerWeb.AccountController do
   end
 
   def show(conn, %{"id" => account_id}) do
+    {:ok, contract_code} = fetch_code_by_address(account_id)
+
     render(
       conn,
       "show.html",
-      code: fetch_code_by_address(account_id)
+      code: contract_code
     )
     else
       :error ->
