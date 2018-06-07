@@ -7,9 +7,10 @@ defmodule Explorer.Chain.Block do
 
   use Explorer.Schema
 
-  alias Explorer.Chain.{Address, Gas, Hash, Transaction}
+  alias Explorer.Chain.{Address, Data, Gas, Hash, Transaction}
 
-  @required_attrs ~w(difficulty gas_limit gas_used hash miner_hash nonce number parent_hash size timestamp
+  @optional_attrs ~w(nonce)a
+  @required_attrs ~w(difficulty gas_limit gas_used hash miner_hash number parent_hash size timestamp
                      total_difficulty)a
 
   @typedoc """
@@ -49,7 +50,7 @@ defmodule Explorer.Chain.Block do
           hash: Hash.t(),
           miner: %Ecto.Association.NotLoaded{} | Address.t(),
           miner_hash: Hash.Truncated.t(),
-          nonce: Hash.t(),
+          nonce: Data.t(),
           number: block_number(),
           parent_hash: Hash.t(),
           size: non_neg_integer(),
@@ -63,7 +64,7 @@ defmodule Explorer.Chain.Block do
     field(:difficulty, :decimal)
     field(:gas_limit, :integer)
     field(:gas_used, :integer)
-    field(:nonce, :integer)
+    field(:nonce, Data)
     field(:number, :integer)
     field(:size, :integer)
     field(:timestamp, Timex.Ecto.DateTime)

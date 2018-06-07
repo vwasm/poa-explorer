@@ -105,7 +105,7 @@ defmodule Explorer.Chain.Transaction do
           index: non_neg_integer() | nil,
           input: Data.t(),
           internal_transactions: %Ecto.Association.NotLoaded{} | [InternalTransaction.t()],
-          nonce: non_neg_integer(),
+          nonce: Data.t(),
           r: r(),
           receipt: %Ecto.Association.NotLoaded{} | Receipt.t(),
           s: s(),
@@ -121,7 +121,7 @@ defmodule Explorer.Chain.Transaction do
     field(:gas_price, Wei)
     field(:index, :integer)
     field(:input, Data)
-    field(:nonce, :integer)
+    field(:nonce, Data)
     field(:r, :decimal)
     field(:s, :decimal)
     field(:v, :integer)
