@@ -207,13 +207,6 @@ defmodule EthereumJSONRPC do
   end
 
   @doc """
-  Converts `t:nonce/0` to `t:non_neg_integer/0`
-  """
-  def nonce_to_integer(nonce) do
-    hexadecimal_to_integer(nonce)
-  end
-
-  @doc """
   Converts `t:quantity/0` to `t:non_neg_integer/0`.
   """
   def quantity_to_integer(quantity) do

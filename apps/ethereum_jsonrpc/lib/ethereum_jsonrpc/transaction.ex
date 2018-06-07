@@ -55,7 +55,7 @@ defmodule EthereumJSONRPC.Transaction do
           hash: EthereumJSONRPC.hash(),
           index: non_neg_integer(),
           input: String.t(),
-          nonce: non_neg_integer(),
+          nonce: String.t(),
           r: non_neg_integer(),
           s: non_neg_integer(),
           standard_v: 0 | 1,
@@ -134,11 +134,11 @@ defmodule EthereumJSONRPC.Transaction do
   # `t:EthereumJSONRPC.address/0` and `t:EthereumJSONRPC.hash/0` pass through as `Explorer.Chain` can verify correct
   # hash format
   defp entry_to_elixir({key, value})
-       when key in ~w(blockHash condition creates from hash input jsonrpc raw to),
+       when key in ~w(blockHash condition creates from hash input jsonrpc nonce raw to),
        do: {key, value}
 
   defp entry_to_elixir({key, quantity})
-       when key in ~w(blockNumber gas gasPrice nonce r s transactionIndex v value) do
+       when key in ~w(blockNumber gas gasPrice r s transactionIndex v value) do
     {key, quantity_to_integer(quantity)}
   end
 
